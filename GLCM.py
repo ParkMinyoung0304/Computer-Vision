@@ -27,7 +27,7 @@ def cut_img_step(img,step):  # 每个块大小为20x20
 
 # 读取图片
 pwd = os.getcwd() #获取当前路径
-img = cv2.imdecode(np.fromfile("D:/研究生文件/计算机视觉论文/data/2.jpg", dtype=np.uint8), -1)
+img = cv2.imdecode(np.fromfile("PATH_FILE/Image.jpg", dtype=np.uint8), -1)
 # imdecode读取的是rgb，如果后续需要opencv处理的话，需要转换成bgr，转换后图片颜色会变化
 img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
@@ -36,7 +36,6 @@ level = 64
 scale_data = 256/level
 
 img_64= (img / scale_data).astype(np.int32)
-
 
 plt.subplot(211)
 plt.imshow(img,cmap='gray')
@@ -47,7 +46,6 @@ plt.imshow(img_64,cmap='gray')
 plt.title("64阶 675x1200",fontproperties = font)
 plt.axis("off")
 plt.show()
-
 
 '''获取整张图片的Glcm纹理 4个方向 0-》3/4 pi,64阶'''
 img_glcm64 = graycomatrix(img_64, [1], [0, np.pi / 4, np.pi / 2, 3 * np.pi / 4], levels=level)
@@ -63,7 +61,6 @@ for g_level1 in img_glcm64:
 mean = np.array(mean)
 '''Glcm_new 中保存了原图的Glcm4个方向的平均值'''
 Glcm_new = mean.reshape(( level, level,1,1))# 后两个参数为步长数，方向数，计算特征需要
-
 
 plt.subplot(211)
 plt.imshow(img_64,cmap='gray')
