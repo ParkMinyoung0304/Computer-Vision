@@ -26,7 +26,8 @@ class Tudui(nn.Module):
         self.sigmoid1 = Sigmoid()
     
     def forward(self, input):
-        output = self.relu1(input)
+        # output = self.relu1(input)
+        output = self.sigmoid1(input)
         return output
     
     
